@@ -1,0 +1,48 @@
+本项目为消息中间件的使用
+    1：消息distinct分为 queue/topic
+    2：消息consumer包括receive/linstener receive是阻塞的，一直等待mq给消息  listener是消息监听，异步任务，怎么实现的未知（可能MQ有消息主动向监听器投递）
+
+    3：MQ中间件的其他产品
+
+
+    4：JMS组成结构与特点（四大元素）
+        4.1：JMS provider   实现JMS接口和规范的消息中间件，也就是MQ服务器（安装的MQ软件）
+        4.2：JMS producer   消息生产者，创建以及发送消息的客户端应用
+        4.3：JMS consumer   消息消费者，接收与处理消息的客户端
+        4.4：JMS message
+            4.4.1：消息头
+                4.4.1.1:JMSDestination      目的地
+                4.4.1.2:JMSDeliveryMode     //持久化：持久化的模式保证了消息可靠性 persistent 持久 non_persistent 非持久 redis:rdb aof
+                4.4.1.3:JMSExpiration       //过期时间：默认永不过期
+                4.4.1.4:JMSPririty          //优先级（0-9 越大越优先，非绝对）
+                4.4.1.5:JMSMessageID        //消息生成的唯一标识，也可以自己定义（分布式项目可以使用分布式id生成器）
+
+            4.4.2：消息体
+                4.4.2.1：TextMessage 常用
+                4.4.2.2：MapMessage  常用
+                4.4.2.3：BytesMessage
+                4.4.2.4：StreamMesage
+                4.4.2.5：ObjectMessage
+
+
+            4.4.3：消息属性（对消息体的进一步区分）
+                4.4.3.1：如果需要除消息头字段以外的值，那么可以使用消息属性
+                4.4.3.2：识别/去重/重点标注等操作非常有用的方法（找属性值为vip的） message.send()之前，对消息设置属性
+
+    5：JMS的可靠性
+        5.1:开启持久化（MQ宕机重启后消息不会丢失）
+        5.1:事务  生产者使用
+        5.1:签收  消费者使用
+        5.1:
+        5.1:
+
+
+    6：JMS点对点
+
+    7：JM发布订阅
+
+    8：持久化
+        8.1:queue
+            使用消息头的设置： producer.setDeliveryMode(DeliveryMode.PERSISTENT);
+        8.2:topic
+
